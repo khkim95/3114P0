@@ -10,7 +10,7 @@ public class Project0
 	public static void main(String[] args) throws FileNotFoundException, IOException
 	{
 		//Insert your code here
-		readFile("test5.in");
+		readFile("test1.in");
 	}
 	
 	static class Graph
