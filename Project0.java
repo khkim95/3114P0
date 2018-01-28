@@ -18,14 +18,18 @@ public class Project0
 		int V;
 		LinkedList<Integer> adjListArray[];
 		
+
 		Graph(int V)	//constructor
 		{
 			this.V = V;
-			adjListArray = new LinkedList[V];
+			adjListArray = new LinkedList[V+1];
 			
-			for (int i = 0; i < V; i++)
+			int size = adjListArray.length;
+			System.out.print(size);
+			
+			for (int i = 1; i < adjListArray.length; i++)
 			{
-				adjListArray[i] = new LinkedList<>();
+				adjListArray[i] = new LinkedList<Integer>();
 			}
 		}
 	}
@@ -33,12 +37,12 @@ public class Project0
 	static void addEdge(Graph graph, int src, int dest)
 	{
 		graph.adjListArray[src].add(dest);		//add edges to both direction since it is undirected.
-		//graph.adjListArray[dest].add(src);
+		graph.adjListArray[dest].add(src);
 	}
 	
 	static void printGraph(Graph graph)
 	{
-		for (int v = 0; v < graph.V; v++)
+		for (int v = 1; v < graph.V+1; v++)
 		{
 			System.out.println("Adjacency list of vertex " +v);
 			System.out.print("head");
@@ -54,7 +58,6 @@ public class Project0
 	{
 		for (Integer i: graph.adjListArray[src])
 		{
-			System.out.print("At " + src +": ");
 			System.out.print(i);
 		}
 		System.out.print("\n");
@@ -75,7 +78,7 @@ public class Project0
 		int M = scan.nextInt();
 		int Q = scan.nextInt();
 		
-		Graph graph = new Graph(N);			//
+		Graph graph = new Graph(N);			//create a graph with N number of vertices
 		
 		for (int i = 0; i < M; i++)			//add edges to following vertices
 		{
