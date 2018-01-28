@@ -10,7 +10,7 @@ public class Project0
 	public static void main(String[] args) throws FileNotFoundException, IOException
 	{
 		//Insert your code here
-		readFile("test1.in");
+		readFile("test5.in");
 	}
 	
 	static class Graph
@@ -23,9 +23,6 @@ public class Project0
 		{
 			this.V = V;
 			adjListArray = new LinkedList[V+1];
-			
-			int size = adjListArray.length;
-			System.out.print(size);
 			
 			for (int i = 1; i < adjListArray.length; i++)
 			{
@@ -40,7 +37,7 @@ public class Project0
 		graph.adjListArray[dest].add(src);
 	}
 	
-	static void printGraph(Graph graph)
+/*	static void printGraph(Graph graph)
 	{
 		for (int v = 1; v < graph.V+1; v++)
 		{
@@ -52,15 +49,22 @@ public class Project0
 			}
 			System.out.println("\n");
 		}
-	}
+	}*/
 	
 	static void printVertices(Graph graph, int src)
 	{
-		for (Integer i: graph.adjListArray[src])
+		String out = "";
+		if (graph.adjListArray[src].isEmpty())
+			out = String.valueOf(-1);
+		else
 		{
-			System.out.print(i);
+			for (int i = 0; i < graph.adjListArray[src].size(); i++)
+			{
+				int value = graph.adjListArray[src].get(i);
+				out += value + " ";
+			}
 		}
-		System.out.print("\n");
+		System.out.println(out);
 	}
 	
 	
@@ -89,7 +93,7 @@ public class Project0
 			addEdge(graph, src, dest);
 		}
 		
-		printGraph(graph);
+		//printGraph(graph);
 		
 		for (int i = 0; i < Q; i++)
 		{
