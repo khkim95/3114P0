@@ -1,5 +1,3 @@
-package Project0.java;
-
 import java.util.*;
 import java.io.*;
 
@@ -11,8 +9,25 @@ public class Project0
     {
         //Insert your code here
         Scanner scan = new Scanner(System.in);
-        String filename = scan.next();
-        readFile(filename);
+        
+        int N = scan.nextInt();
+        int M = scan.nextInt();
+        int Q = scan.nextInt();
+        
+        Graph graph = new Graph(N);            //create a graph with N number of vertices
+        
+        for (int i = 0; i < M; i++)            //add edges to following vertices
+        {
+            int src = scan.nextInt();
+            int dest = scan.nextInt();
+            addEdge(graph, src, dest);
+        }
+        
+        for (int i = 0; i < Q; i++)
+        {
+            int src = scan.nextInt();
+            printVertices(graph,src);
+        }
         scan.close();
     }
     
@@ -22,6 +37,7 @@ public class Project0
         LinkedList<Integer> adjListArray[];
         
         
+        @SuppressWarnings("unchecked")
         Graph(int V)    //constructor
         {
             this.V = V;
@@ -40,20 +56,6 @@ public class Project0
         graph.adjListArray[dest].add(src);
     }
     
-    /*    static void printGraph(Graph graph)
-     {
-     for (int v = 1; v < graph.V+1; v++)
-     {
-     System.out.println("Adjacency list of vertex " +v);
-     System.out.print("head");
-     for (Integer i: graph.adjListArray[v])
-     {
-     System.out.print(" -> " + i);
-     }
-     System.out.println("\n");
-     }
-     }*/
-    
     static void printVertices(Graph graph, int src)
     {
         String out = "";
@@ -70,44 +72,5 @@ public class Project0
         System.out.println(out);
     }
     
-    
-    public static void readFile(String filename) throws FileNotFoundException, IOException
-    {
-        FileReader fileReader = new FileReader(filename);
-        BufferedReader in = new BufferedReader(fileReader);
-        
-        
-        String s = in.readLine();
-        
-        Scanner scan = new Scanner(s);
-        
-        int N = scan.nextInt();
-        int M = scan.nextInt();
-        int Q = scan.nextInt();
-        
-        Graph graph = new Graph(N);            //create a graph with N number of vertices
-        
-        for (int i = 0; i < M; i++)            //add edges to following vertices
-        {
-            String lines = in.readLine();
-            Scanner sc = new Scanner(lines);
-            int src = sc.nextInt();
-            int dest = sc.nextInt();
-            addEdge(graph, src, dest);
-            sc.close();
-        }
-        //printGraph(graph);
-        
-        for (int i = 0; i < Q; i++)
-        {
-            String lines = in.readLine();
-            Scanner sc = new Scanner(lines);
-            int src = sc.nextInt();
-            printVertices(graph,src);
-            sc.close();
-        }
-        scan.close();
-        in.close();
-    }
-    
 }
+
